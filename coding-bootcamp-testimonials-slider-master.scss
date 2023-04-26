@@ -1,0 +1,198 @@
+//beautified at https://codebeautify.org/scss-beautifier 
+
+@import 'custom.scss';
+
+$container__form-xs: 375;
+$container__form-xxl: 1440;
+
+$container__form-xxl-min: 1439;
+$font_size-32: 32px;
+$font_size-18: 18px;
+
+$height_arrows-mobile: 40px;
+$height_arrows-desktop: 50px;
+$width_arrows-mobile: 25px;
+$width_arrows-desktop: 35px;
+
+$font_weight-light: 300;
+$font_weight-medium: 500;
+$font_weight-bold: 700;
+
+
+
+$colors: (
+   Dark Blue: hsl(240, 38%, 20%),
+   Grayish Blue: hsl(240, 18%, 77%),
+   White: rgb(245,245,220),
+   White2: #fff8e7,
+   Orange: hsl(42, 91%, 54%),
+);
+$fallback-colors: (
+   DarkBlue CadetBlue Snow GhostWhite Amber
+);
+
+@mixin font-color($color, $fallback-color) {
+  color: $fallback-color;
+  color: $color;
+}
+
+@mixin bg-color($color, $fallback-color) {
+  background-color: $fallback-color;
+  background-color: $color;
+}
+
+@mixin width($grid-size) {
+  width: $grid-size * 1px;
+}
+@mixin max-width($grid-size) {
+  max-width: $grid-size * 1px;
+}
+@mixin min-width($grid-size) {
+  min-width: $grid-size * 1px;
+}
+@mixin border-radius($radius...) {
+  border-radius: $radius;
+}
+@mixin margin($args...) {
+  margin: $args;
+}
+@mixin padding($args...) {
+  padding: $args;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  &:not(.attribution){
+     font:$font_weight-medium $font_size-18 'Inter', sans-serif;
+  }
+  @media screen and (min-width: $container__form-xxl * 1px){
+     font-size: $font_size-32;
+  }
+}
+
+
+main {  
+     overflow: auto;
+     width: 100%;
+     display: grid;
+     min-height: 100vh;
+     margin: 100px auto;
+     @include padding(10px);
+	 background: url('images/pattern-curve.svg') 0 100% no-repeat;
+	 
+	 .nowrap{
+	   white-space: nowrap;
+	 }
+	 
+	 .bold-font{
+	    font-weight: $font_weight-bold;
+		font-size: $font_size-18;
+	 }
+	 .light-font{
+	    font-weight: $font_weight-light;
+		font-size: $font_size-18;
+		@include font-color(map-get($colors,Grayish Blue),nth($fallback-colors,2));
+	 }
+	 
+	 /*the carousel arrows container*/
+	 .arrow-control{
+        border-radius: 25px;
+        top: 250px;
+        height: 40px;
+		width: 100px;
+        position: absolute;
+		left: 35%;
+	    @include bg-color(map-get($colors,White2),nth($fallback-colors,4));
+		z-index:99;
+		margin: 0 auto;
+		@media screen and (min-width: $container__form-xxl * 1px){
+		   height: 50px;
+		   width: 150px;
+		   top: 600px;
+		   left: 60%;
+		}
+	 }
+	 /*the carousel left/previous arrow */
+	 .carousel-control-prev-icon {
+        position:absolute;
+		height: $height_arrows-mobile;
+		width: $width_arrows-mobile;
+		bottom: 2px;
+		left: 10px;
+		background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='hsl(240, 38%, 20%)'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
+		
+		@media screen and (min-width: $container__form-xxl * 1px){
+		   left: 50%;
+		   height: $height_arrows-desktop;
+		   width: $width_arrows-desktop;
+		}
+	 }
+     /*the carousel right/next arrow */
+     .carousel-control-next-icon {
+        position:absolute;
+		bottom: 2px;
+		height: $height_arrows-mobile;
+		width: $width_arrows-mobile;
+        right: 5px;
+		background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='hsl(240, 38%, 20%)'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+		@media screen and (min-width: $container__form-xxl * 1px){
+		    right: 100%;
+			height: $height_arrows-desktop;
+		    width: $width_arrows-desktop; 
+		}
+     }
+	 
+	 .quote {
+		@include padding(100px 20px);
+	    background: url('images/pattern-quotes.svg') (160px 55px)/(70px 70px) no-repeat;
+	 }
+     .image  {
+	    background: url('images/pattern-bg.svg') (50px 50px)/(80% 80%) no-repeat;
+		@media screen and (min-width: $container__form-xxl * 1px){
+		   background: url('images/pattern-bg.svg') no-repeat;
+		}
+	 }
+	 img { 
+	    transform: scale(0.6,0.6);
+		margin: 0 auto;
+		@media screen and (min-width: $container__form-xxl * 1px){
+		   transform: scale(0.8,0.8);
+		}
+     }
+	 
+     @media screen and (max-width: $container__form-xxl-min * 1px){
+	    @include width($container__form-xs);
+	 }
+	   
+	 @media screen and (min-width: $container__form-xxl * 1px){
+	    @include width($container__form-xxl);
+		.left{
+	       position:relative;
+		   left: 18%;
+		   z-index:99;
+	    }
+	 }
+        
+    
+    
+    
+  
+}
+
+footer {
+  .attribution {
+    font-size: 11px;
+    text-align: center;
+  }
+  .attribution a {
+    color: hsl(228, 45%, 44%);
+  }
+}
